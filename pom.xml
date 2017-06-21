@@ -11,6 +11,9 @@
     <properties>
         <spring-version>4.2.9.RELEASE</spring-version>
         <hibernate-version>5.2.10.Final</hibernate-version>
+
+        <!--下面这个是springAOP需要用到-->
+        <aspectjweaver-version>1.7.2</aspectjweaver-version>
     </properties>
 
 
@@ -36,6 +39,11 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
         <!-- spring dependency end -->
 
         <!-- hibernate dependency start -->
@@ -44,6 +52,26 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${hibernate-version}</version>
+        </dependency>
         <!-- hibernate dependency end -->
+
+        <!-- spring aop start -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjtools</artifactId>
+            <version>${aspectjweaver-version}</version>
+        </dependency>
+        <!-- spring aop end -->
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.30</version>
+        </dependency>
+
     </dependencies>
 </project>
