@@ -1,6 +1,11 @@
 package com.hjj.ben.model;
 
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
+import javax.persistence.Id;
 
 /**
  * Created by ben on 6/22/17.
@@ -9,6 +14,8 @@ import javax.persistence.*;
 @Table(name = "novel_detail")
 public class NovelDetail {
 
+    @GeneratedValue
+    @Id
     private Integer id;
 
     @Column(name = "res_id")
@@ -37,8 +44,6 @@ public class NovelDetail {
     @Column(name = "chapters_categore_href")
     private String chaptersCategoreHref;
 
-    @GeneratedValue
-    @Id
     public Integer getId() {
         return id;
     }

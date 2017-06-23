@@ -10,20 +10,20 @@ public interface IBaseDao {
      * 添加或者更新数据
      * @param entity
      */
-    public void saveOrUpdate(Object entity);
+    void saveOrUpdate(Object entity);
 
     /**
      * 删除数据
      * @param entity
      */
-    public void delete(Object entity);
+    void delete(Object entity);
 
     /**
      * 获取所有数据
      * @param clazz
      * @return
      */
-    public List<?> getAll(Class clazz);
+    List<?> getAll(Class clazz);
 
     /**
      * 通过id获取数据
@@ -31,7 +31,7 @@ public interface IBaseDao {
      * @param clazz
      * @return
      */
-    public Object getById(Integer id, Class clazz);
+    Object getById(Integer id, Class clazz);
 
     /**
      * 通过小说详情ID获取目录
@@ -39,5 +39,6 @@ public interface IBaseDao {
      * @param clazz
      * @return
      */
-    public List<?> getCatalog(Integer novelDetailId, Class clazz);
+    List<?> getCatalog(Integer novelDetailId, Class clazz);
+
 }

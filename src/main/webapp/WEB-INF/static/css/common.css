@@ -1,0 +1,35 @@
+table {
+    margin-top: 10px;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+table th, table td {
+    border: 1px solid;
+    text-align: center;
+}
+
+table td a {
+    text-decoration: none;
+    color: #556B2F;
+}
+
+h1 {
+    text-align: center;
+    font-family: arial;
+    color: #000000;
+    font-size: 24px;
+}
+
+.oddBg {
+    background-color: #DCDCDC;
+}
+.evenBg {
+    background-color: #F0E68C;
+}
+
+.content {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:#FFFACD;
+}

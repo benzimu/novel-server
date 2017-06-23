@@ -23,4 +23,9 @@ public class NovelChaptersService implements INovelChaptersService {
         return list;
     }
 
+    public NovelChapters getChapterById(Integer chapterId) {
+        NovelChapters novelChapters = (NovelChapters) baseDao.getById(chapterId, NovelChapters.class);
+        return novelChapters;
+    }
+
 }

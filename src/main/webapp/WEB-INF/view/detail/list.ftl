@@ -2,25 +2,9 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>index</title>
+    <title>小说列表</title>
+    <link href="/css/common.css" rel="stylesheet" type="text/css" />
 </head>
-<style>
-    table {
-        margin-top: 10px;
-        border: 1px solid;
-        border-collapse: collapse;
-    }
-    table th, table td {
-        border: 1px solid;
-        text-align: center;
-    }
-    .oddBg {
-        background-color: #008200;
-    }
-    .evenBg {
-        background-color: #677288;
-    }
-</style>
 <body>
     <table>
         <thead>
@@ -50,7 +34,6 @@
                 <#--<td>${detail.description}</td>-->
                 <td>${detail.latestChapters!}</td>
                 <td>
-                    <#--<input type="button" value="查看小说" id="">-->
                     <a href="/chapters/catalog/${detail.id}">查看小说</a>
                 </td>
             </tr>

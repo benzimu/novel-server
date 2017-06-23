@@ -14,6 +14,7 @@ public interface INovelChaptersService {
      * @param novelDetailId
      * @return
      */
-    public List<NovelChapters> getCatalogByDetailId(Integer novelDetailId);
+    List<NovelChapters> getCatalogByDetailId(Integer novelDetailId);
 
+    NovelChapters getChapterById(Integer chapterId);
 }

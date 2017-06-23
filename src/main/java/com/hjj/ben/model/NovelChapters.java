@@ -1,6 +1,10 @@
 package com.hjj.ben.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
+import javax.persistence.Id;
 
 /**
  * Created by ben on 6/22/17.
@@ -9,20 +13,20 @@ import javax.persistence.*;
 @Table(name = "novel_chapters")
 public class NovelChapters {
 
+    @GeneratedValue
+    @Id
     private Integer id;
 
-    @Column(name = "resId")
+    @Column(name = "res_id")
     private Integer resId;
 
-    @Column(name = "novelDetailId")
+    @Column(name = "novel_detail_id")
     private Integer novelDetailId;
     private String source;
     private String counts;
     private String name;
     private String content;
 
-    @GeneratedValue
-    @Id
     public Integer getId() {
         return id;
     }
@@ -77,6 +81,14 @@ public class NovelChapters {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public NovelChapters() {
+    }
+
+    public NovelChapters(Integer id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     @Override

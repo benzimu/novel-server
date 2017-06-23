@@ -2,7 +2,6 @@ package com.hjj.ben.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -40,12 +39,12 @@ public class BaseDao implements IBaseDao {
 
     public List<?> getCatalog(Integer novelDetailId, Class clazz) {
         String simpleName = clazz.getSimpleName();
-        String id = simpleName + ".id";
-        String name = simpleName + ".name";
         String noveldetailid = "novelDetailId";
         String resid = simpleName + ".resId";
 
-        String hql = "select " + id + "," + name +
+        String idAndName = "(id, name)";
+
+        String hql = "select new " + clazz.getName() + idAndName +
                      " from " + clazz.getName() + " " + simpleName +
                      " where " + noveldetailid + " = :novelDetailId " +
                      "order by " + resid;

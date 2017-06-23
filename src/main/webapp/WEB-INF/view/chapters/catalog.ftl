@@ -1,37 +1,24 @@
+<#assign basePath=request.contextPath />
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>index</title>
+    <title>小说章节目录</title>
+    <link href="/css/common.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
 </head>
-<style>
-    table {
-        margin-top: 10px;
-        border: 1px solid;
-        border-collapse: collapse;
-    }
-    table th, table td {
-        border: 1px solid;
-        text-align: center;
-    }
-    .oddBg {
-        background-color: #008200;
-    }
-    .evenBg {
-        background-color: #677288;
-    }
-</style>
 <body>
     <table>
-        <tbody>
-            <#list catalogList as catalog>
-            <#--<#if catalog_index % 4-->
-            <tr class=<#if catalog_index % 2 == 0>'oddBg'<#else>'evenBg'</#if>>
-                <td>${catalog.id}</td>
-                <td>${catalog.name!}</td>
-            </tr>
+        <h1>
+            ${novelDetail.name}&nbsp;&nbsp;•&nbsp;&nbsp;${novelDetail.author}
+        </h1>
+        <#list catalogList?chunk(4) as catalogs>
+        <tr class=<#if catalogs_index % 2 == 0>'oddBg'<#else>'evenBg'</#if>>
+            <#list catalogs as catalog>
+                <td><a href="/chapters/${catalog.id}">${catalog.name!}</a></td>
             </#list>
-        </tbody>
+        </tr>
+        </#list>
     </table>
 </body>
 </html>

@@ -22,4 +22,9 @@ public class NovelDetailService implements INovelDetailService {
         List<NovelDetail> list = (List<NovelDetail>) baseDao.getAll(NovelDetail.class);
         return list;
     }
+
+    public NovelDetail getById(Integer id) {
+        NovelDetail novelDetail = (NovelDetail) baseDao.getById(id, NovelDetail.class);
+        return novelDetail;
+    }
 }

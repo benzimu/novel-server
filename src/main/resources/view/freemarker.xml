@@ -29,5 +29,6 @@
         <property name="exposeSessionAttributes" value="true" />
         <property name="exposeSpringMacroHelpers" value="true" />
         <property name="requestContextAttribute" value="request"/>
+        <property name="cache" value="true" />
     </bean>
 </beans>
