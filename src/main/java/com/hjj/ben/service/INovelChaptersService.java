@@ -12,9 +12,10 @@ public interface INovelChaptersService {
     /**
      * 通过小说详情ID获取章节目录
      * @param novelDetailId
+     * @param reverseFlag
      * @return
      */
-    List<NovelChapters> getCatalogByDetailId(Integer novelDetailId);
+    List<NovelChapters> getCatalogByDetailId(Integer novelDetailId, String reverseFlag);
 
     NovelChapters getChapterById(Integer chapterId);
 }

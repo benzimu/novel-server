@@ -33,3 +33,36 @@ h1 {
     margin-right: auto;
     background-color:#FFFACD;
 }
+
+.back-a {
+    float: left;
+    margin-left: 20px;
+    font-size: 30px;
+    color: #556B2F;
+    text-decoration: none;
+}
+
+.reverse-a {
+    float: left;
+    margin-left: 20px;
+    font-size: 20px;
+    color: #556B2F;
+    text-decoration: none;
+}
+
+.catalog-a {
+    float: left;
+    margin-left: 20px;
+    margin-top: 4px;
+    font-size: 24px;
+    color: #556B2F;
+    text-decoration: none;
+}
+
+.next-a {
+    float: right;
+    margin-right: 20px;
+    font-size: 30px;
+    color: #556B2F;
+    text-decoration: none;
+}

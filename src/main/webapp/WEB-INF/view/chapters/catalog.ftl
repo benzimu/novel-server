@@ -8,10 +8,14 @@
     <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <table>
+    <div>
+        <a class="back-a" title="小说列表" href="/detail/list">←</a>
+        <a class="reverse-a" title="逆序" href="/chapters/catalog/${novelDetail.id}?reverseFlag=${reverseFlag}">⇅</a>
         <h1>
-            ${novelDetail.name}&nbsp;&nbsp;•&nbsp;&nbsp;${novelDetail.author}
+        ${novelDetail.name}&nbsp;&nbsp;•&nbsp;&nbsp;${novelDetail.author}
         </h1>
+    </div>
+    <table>
         <#list catalogList?chunk(4) as catalogs>
         <tr class=<#if catalogs_index % 2 == 0>'oddBg'<#else>'evenBg'</#if>>
             <#list catalogs as catalog>

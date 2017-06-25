@@ -37,17 +37,18 @@ public class BaseDao implements IBaseDao {
         return getSession().get(clazz, id);
     }
 
-    public List<?> getCatalog(Integer novelDetailId, Class clazz) {
+    public List<?> getCatalog(Integer novelDetailId, String reverseFlag, Class clazz) {
         String simpleName = clazz.getSimpleName();
         String noveldetailid = "novelDetailId";
         String resid = simpleName + ".resId";
+
 
         String idAndName = "(id, name)";
 
         String hql = "select new " + clazz.getName() + idAndName +
                      " from " + clazz.getName() + " " + simpleName +
                      " where " + noveldetailid + " = :novelDetailId " +
-                     "order by " + resid;
+                     "order by " + resid + " " + reverseFlag;
         return getSession().createQuery(hql).setParameter(noveldetailid, novelDetailId).list();
     }
 

@@ -36,9 +36,10 @@ public interface IBaseDao {
     /**
      * 通过小说详情ID获取目录
      * @param novelDetailId
+     * @param reverseFlag
      * @param clazz
      * @return
      */
-    List<?> getCatalog(Integer novelDetailId, Class clazz);
+    List<?> getCatalog(Integer novelDetailId, String reverseFlag, Class clazz);
 
 }

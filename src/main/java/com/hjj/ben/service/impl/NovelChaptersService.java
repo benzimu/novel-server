@@ -18,8 +18,8 @@ public class NovelChaptersService implements INovelChaptersService {
     @Resource
     private IBaseDao baseDao;
 
-    public List<NovelChapters> getCatalogByDetailId(Integer novelDetailId) {
-        List<NovelChapters> list = (List<NovelChapters>) baseDao.getCatalog(novelDetailId, NovelChapters.class);
+    public List<NovelChapters> getCatalogByDetailId(Integer novelDetailId, String reverseFlag) {
+        List<NovelChapters> list = (List<NovelChapters>) baseDao.getCatalog(novelDetailId, reverseFlag, NovelChapters.class);
         return list;
     }
 

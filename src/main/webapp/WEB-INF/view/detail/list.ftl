@@ -9,7 +9,7 @@
     <table>
         <thead>
             <tr>
-                <th width="5%">id</th>
+                <#--<th width="5%">id</th>-->
                 <th width="10%">小说名</th>
                 <th width="10%">作者</th>
                 <th width="10%">小说更新时间</th>
@@ -24,7 +24,7 @@
         <tbody>
             <#list novelDetailList as detail>
             <tr class=<#if detail_index % 2 == 0>'oddBg'<#else>'evenBg'</#if>>
-                <td>${detail.id}</td>
+                <#--<td>${detail.id}</td>-->
                 <td>${detail.name!}</td>
                 <td>${detail.author!}</td>
                 <td>${detail.updateTime!}</td>

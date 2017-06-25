@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -27,13 +28,17 @@ public class NovelChaptersController {
     private INovelDetailService novelDetailService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/catalog/{novelDetailId}")
-    public ModelAndView getCatalog(@PathVariable Integer novelDetailId) {
+    public ModelAndView getCatalog(@PathVariable Integer novelDetailId, @RequestParam(value = "reverseFlag", required = false, defaultValue = "0") Integer reverseFlag) {
+        String reverseTag = reverseFlag == 0 ? "asc" : "desc";
+
         ModelAndView view = new ModelAndView("chapters/catalog");
-        List<NovelChapters> list = novelChaptersService.getCatalogByDetailId(novelDetailId);
+        List<NovelChapters> list = novelChaptersService.getCatalogByDetailId(novelDetailId, reverseTag);
         view.addObject("catalogList", list);
 
         NovelDetail novelDetail = novelDetailService.getById(novelDetailId);
         view.addObject("novelDetail", novelDetail);
+
+        view.addObject("reverseFlag", reverseFlag == 0 ? 1 : 0);
         return view;
     }
 

@@ -14,9 +14,10 @@ public class IndexController {
 
     @RequestMapping
     public ModelAndView index() {
-        ModelAndView view = new ModelAndView("index");
-        view.addObject("index", "this is novelserver index page!");
-        return view;
+//        ModelAndView view = new ModelAndView("index");
+//        view.addObject("index", "this is novelserver index page!");
+//        return view;
+        return new ModelAndView("redirect:/detail/list");
     }
 
 }
