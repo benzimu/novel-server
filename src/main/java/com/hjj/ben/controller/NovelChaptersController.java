@@ -4,11 +4,9 @@ import com.hjj.ben.model.NovelChapters;
 import com.hjj.ben.model.NovelDetail;
 import com.hjj.ben.service.INovelChaptersService;
 import com.hjj.ben.service.INovelDetailService;
+import com.hjj.ben.utils.ShellUtil;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -28,7 +26,21 @@ public class NovelChaptersController {
     private INovelDetailService novelDetailService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/catalog/{novelDetailId}")
-    public ModelAndView getCatalog(@PathVariable Integer novelDetailId, @RequestParam(value = "reverseFlag", required = false, defaultValue = "0") Integer reverseFlag) {
+    public ModelAndView getCatalog(@PathVariable Integer novelDetailId,
+                                   @RequestParam(value = "reverseFlag",
+                                           required = false,
+                                           defaultValue = "0") Integer reverseFlag,
+                                   @RequestParam(value = "crawlFlag",
+                                           required = false,
+                                           defaultValue = "0") Integer crawlFlag) {
+        if (crawlFlag == 1) {
+            String shellPath = this.getClass().getResource("../script/start_crawl.sh").getPath();
+            System.out.println("shellPath: " + shellPath);
+
+            ShellUtil shellUtil = new ShellUtil();
+            shellUtil.startShell("sh " + shellPath);
+        }
+
         String reverseTag = reverseFlag == 0 ? "asc" : "desc";
 
         ModelAndView view = new ModelAndView("chapters/catalog");
@@ -47,6 +59,13 @@ public class NovelChaptersController {
         NovelChapters novelChapters = novelChaptersService.getChapterById(chapterId);
         ModelAndView view = new ModelAndView("chapters/chapter");
         view.addObject("chapter", novelChapters);
+
+        NovelChapters lastChapter = novelChaptersService.getLastChapter(novelChapters.getResId(), novelChapters.getNovelDetailId());
+        NovelChapters nextChapter = novelChaptersService.getNextChapter(novelChapters.getResId(), novelChapters.getNovelDetailId());
+
+        view.addObject("lastChapter", lastChapter);
+        view.addObject("nextChapter", nextChapter);
+
         return view;
     }
 

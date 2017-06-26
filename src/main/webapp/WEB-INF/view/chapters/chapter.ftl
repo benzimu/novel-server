@@ -10,9 +10,17 @@
 <body>
     <div>
         <div>
-            <a class="back-a" title="上一篇" href="/chapters/catalog/${chapter.novelDetailId}">←</a>
+        <#if lastChapter??>
+            <a class="back-a" title="上一篇" href="/chapters/${lastChapter.id}">←</a>
+        <#else>
+            <a class="back-a">←</a>
+        </#if>
             <a class="catalog-a" title="目录" href="/chapters/catalog/${chapter.novelDetailId}">↞</a>
-            <a class="next-a" title="下一篇" href="/chapters/catalog/${chapter.novelDetailId}">→</a>
+        <#if nextChapter??>
+            <a class="next-a" title="下一篇" href="/chapters/${nextChapter.id}">→</a>
+        <#else>
+            <a class="next-a">→</a>
+        </#if>
             <h1>${chapter.name}</h1>
         </div>
         <div class="content">${chapter.content}</div>

@@ -42,4 +42,20 @@ public interface IBaseDao {
      */
     List<?> getCatalog(Integer novelDetailId, String reverseFlag, Class clazz);
 
+    /**
+     * 获取当前数据的前一条
+     * @param curResId
+     * @param novelDetailId
+     *@param clazz  @return
+     */
+    Object getLastItem(Integer curResId, Integer novelDetailId, Class clazz);
+
+    /**
+     * 获取当前数据的后一条
+     * @param curResId
+     * @param novelDetailId
+     *@param clazz  @return
+     */
+    Object getNextItem(Integer curResId, Integer novelDetailId, Class clazz);
+
 }

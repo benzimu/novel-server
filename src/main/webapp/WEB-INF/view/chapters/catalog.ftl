@@ -11,6 +11,7 @@
     <div>
         <a class="back-a" title="小说列表" href="/detail/list">←</a>
         <a class="reverse-a" title="逆序" href="/chapters/catalog/${novelDetail.id}?reverseFlag=${reverseFlag}">⇅</a>
+        <a class="back-a" title="运行爬虫" href="/chapters/catalog/${novelDetail.id}?reverseFlag=<#if reverseFlag == 0>1<#else>0</#if>&crawlFlag=1">⇣</a>
         <h1>
         ${novelDetail.name}&nbsp;&nbsp;•&nbsp;&nbsp;${novelDetail.author}
         </h1>

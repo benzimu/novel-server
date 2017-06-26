@@ -52,6 +52,40 @@ public class BaseDao implements IBaseDao {
         return getSession().createQuery(hql).setParameter(noveldetailid, novelDetailId).list();
     }
 
+    public Object getLastItem(Integer curResId, Integer novelDetailId, Class clazz) {
+        String simpleName = clazz.getSimpleName();
+        String resId = "resId";
+        String novelDetailIdStr = "novelDetailId";
+        String hql = " from " + clazz.getName() + " " + simpleName +
+                " where " + resId + " < :curResId and " + novelDetailIdStr + " = :novelDetailId order by " + resId + " desc";
+
+        List<?> objList = getSession().createQuery(hql).
+                setParameter("curResId", curResId).
+                setParameter("novelDetailId", novelDetailId).
+                setMaxResults(1).list();
+        if (objList != null && objList.size() != 0) {
+            return objList.get(0);
+        }
+        return null;
+    }
+
+    public Object getNextItem(Integer curResId, Integer novelDetailId, Class clazz) {
+        String simpleName = clazz.getSimpleName();
+        String resId = "resId";
+        String novelDetailIdStr = "novelDetailId";
+        String hql = " from " + clazz.getName() + " " + simpleName +
+                " where " + resId + " > :curResId and " + novelDetailIdStr + " = :novelDetailId";
+
+        List<?> objList = getSession().createQuery(hql).
+                setParameter("curResId", curResId).
+                setParameter("novelDetailId", novelDetailId).
+                setMaxResults(1).list();
+        if (objList != null && objList.size() != 0) {
+            return objList.get(0);
+        }
+        return null;
+    }
+
     private Session getSession() {
         return sessionFactory.getCurrentSession();
     }

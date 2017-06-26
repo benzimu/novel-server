@@ -17,5 +17,14 @@ public interface INovelChaptersService {
      */
     List<NovelChapters> getCatalogByDetailId(Integer novelDetailId, String reverseFlag);
 
+    /**
+     * 通过小说章节ID获取小说章节
+     * @param chapterId
+     * @return
+     */
     NovelChapters getChapterById(Integer chapterId);
+
+    NovelChapters getLastChapter(Integer curChapterResId, Integer novelDetailId);
+
+    NovelChapters getNextChapter(Integer curChapterResId, Integer novelDetailId);
 }

@@ -28,4 +28,20 @@ public class NovelChaptersService implements INovelChaptersService {
         return novelChapters;
     }
 
+    public NovelChapters getLastChapter(Integer curChapterResId, Integer novelDetailId) {
+        Object obj = baseDao.getLastItem(curChapterResId, novelDetailId, NovelChapters.class);
+        if (obj != null) {
+            return (NovelChapters)obj;
+        }
+        return null;
+    }
+
+    public NovelChapters getNextChapter(Integer curChapterResId, Integer novelDetailId) {
+        Object obj = baseDao.getNextItem(curChapterResId, novelDetailId, NovelChapters.class);
+        if (obj != null) {
+            return (NovelChapters)obj;
+        }
+        return null;
+    }
+
 }

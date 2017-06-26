@@ -1,6 +1,8 @@
 table {
+    margin: auto;
     margin-top: 10px;
     border: 1px solid;
+    width: 100%;
     border-collapse: collapse;
 }
 table th, table td {
@@ -14,7 +16,7 @@ table td a {
 }
 
 h1 {
-    text-align: center;
+    margin-left: 535px;
     font-family: arial;
     color: #000000;
     font-size: 24px;
