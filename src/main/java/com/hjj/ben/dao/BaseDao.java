@@ -74,7 +74,7 @@ public class BaseDao implements IBaseDao {
         String resId = "resId";
         String novelDetailIdStr = "novelDetailId";
         String hql = " from " + clazz.getName() + " " + simpleName +
-                " where " + resId + " > :curResId and " + novelDetailIdStr + " = :novelDetailId";
+                " where " + resId + " > :curResId and " + novelDetailIdStr + " = :novelDetailId order by " + resId;
 
         List<?> objList = getSession().createQuery(hql).
                 setParameter("curResId", curResId).
