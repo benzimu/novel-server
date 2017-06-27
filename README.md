@@ -3,6 +3,6 @@
     
 # 项目截图
     一、首页
-    ![md-index](md-index.png)
+    ![index](index.png)
     
 
