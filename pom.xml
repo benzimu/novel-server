@@ -11,9 +11,13 @@
     <properties>
         <spring-version>4.2.9.RELEASE</spring-version>
         <hibernate-version>4.3.5.Final</hibernate-version>
-
-        <!--下面这个是springAOP需要用到-->
         <aspectjweaver-version>1.7.2</aspectjweaver-version>
+        <mysql-connector-version>5.1.30</mysql-connector-version>
+        <freemarker-version>2.3.20</freemarker-version>
+        <servlet-version>3.1.0</servlet-version>
+        <logback-version>1.2.3</logback-version>
+        <logback-extensions-version>0.1.4</logback-extensions-version>
+        <logback-slf4j-version>1.7.25</logback-slf4j-version>
     </properties>
 
 
@@ -75,20 +79,38 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.30</version>
+            <version>${mysql-connector-version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.20</version>
+            <version>${freemarker-version}</version>
         </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>${servlet-version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- 日志集成依赖 start -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>${logback-extensions-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${logback-slf4j-version}</version>
+        </dependency>
+        <!-- 日志集成依赖 end -->
     </dependencies>
 </project>

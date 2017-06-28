@@ -5,6 +5,8 @@ import com.hjj.ben.model.NovelDetail;
 import com.hjj.ben.service.INovelChaptersService;
 import com.hjj.ben.service.INovelDetailService;
 import com.hjj.ben.utils.ShellUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +22,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/chapters")
 public class NovelChaptersController {
+
+    private static final Logger logger = LoggerFactory.getLogger(NovelChaptersController.class);
 
     @Resource
     private INovelChaptersService novelChaptersService;
@@ -37,6 +41,7 @@ public class NovelChaptersController {
         if (crawlFlag == 1) {
             String basePath = this.getClass().getResource("/").getPath();
             System.out.println("basePath: " + basePath);
+            logger.info("basePath: {}", basePath);
 
             String shellPath = basePath + "script/start_crawl.sh";
             System.out.println("shellPath: " + shellPath);

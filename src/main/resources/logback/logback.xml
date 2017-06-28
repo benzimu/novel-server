@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 日志文件名 -->
+    <property name="file.name" value="novelserver" />
+    <!-- 日志文件存储路径 -->
+    <property name="file.path" value="/tmp/log" />
+
+    <!-- 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <Target>System.out</Target>
+        <Encoding>UTF-8</Encoding>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %5p [%t] [%c{1}]:%L - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <file>${file.path}/${file.name}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 每天一归档 -->
+            <fileNamePattern>${file.path}/${file.name}-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <!-- 单个日志文件最多 100MB, 15天的日志周期，最大不能超过10GB -->
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>15</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                %date %level [%thread] %logger{36} [%file : %line] %msg%n
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.springframework.remoting" level="WARN"/>
+    <logger name="org.springframework.scheduling.quartz" level="WARN"/>
+    <logger name="org.springframework.data.jpa" level="DEBUG"/>
+    <logger name="org.cometd" level="WARN"/>
+    <logger name="ch.qos.logback" level="WARN"/>
+    <logger name="com.springapp.mvc" level="DEBUG"/>
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+</configuration>
