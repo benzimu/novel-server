@@ -35,7 +35,7 @@ public class NovelChaptersController {
                                            required = false,
                                            defaultValue = "0") Integer crawlFlag) {
         if (crawlFlag == 1) {
-            String basePath = this.getClass().getResource("..").getPath();
+            String basePath = this.getClass().getResource("/").getPath();
             System.out.println("basePath: " + basePath);
 
             String shellPath = basePath + "script/start_crawl.sh";
