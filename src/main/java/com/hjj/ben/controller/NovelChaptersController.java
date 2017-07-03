@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.net.URL;
 import java.util.List;
 
 /**
@@ -40,11 +39,10 @@ public class NovelChaptersController {
                                            defaultValue = "0") Integer crawlFlag) {
         if (crawlFlag == 1) {
             String basePath = this.getClass().getResource("/").getPath();
-            System.out.println("basePath: " + basePath);
             logger.info("basePath: {}", basePath);
 
             String shellPath = basePath + "script/start_crawl.sh";
-            System.out.println("shellPath: " + shellPath);
+            logger.info("shellPath: {}", shellPath);
 
             ShellUtil shellUtil = new ShellUtil();
             shellUtil.startShell("sh " + shellPath);

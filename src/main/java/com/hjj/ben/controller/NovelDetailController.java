@@ -1,5 +1,6 @@
 package com.hjj.ben.controller;
 
+import com.hjj.ben.annotation.SystemControllerLog;
 import com.hjj.ben.model.NovelDetail;
 import com.hjj.ben.service.INovelDetailService;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class NovelDetailController {
     private INovelDetailService novelDetailService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
-    @ResponseBody
+    @SystemControllerLog(description = "小说详情列表")
     public ModelAndView list() {
         ModelAndView view = new ModelAndView("detail/list");
         List<NovelDetail> list = novelDetailService.getAll();
