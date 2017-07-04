@@ -18,6 +18,7 @@
         <logback-version>1.2.3</logback-version>
         <logback-extensions-version>0.1.4</logback-extensions-version>
         <logback-slf4j-version>1.7.25</logback-slf4j-version>
+        <cglib-version>2.2</cglib-version>
     </properties>
 
 
@@ -53,6 +54,11 @@
             <artifactId>spring-context-support</artifactId>
             <version>${spring-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
         <!-- spring dependency end -->
 
         <!-- hibernate dependency start -->
@@ -71,7 +77,12 @@
         <!-- spring aop start -->
         <dependency>
             <groupId>org.aspectj</groupId>
-            <artifactId>aspectjtools</artifactId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectjweaver-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
             <version>${aspectjweaver-version}</version>
         </dependency>
         <!-- spring aop end -->

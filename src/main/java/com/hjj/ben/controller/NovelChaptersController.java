@@ -1,5 +1,6 @@
 package com.hjj.ben.controller;
 
+import com.hjj.ben.annotation.SystemControllerLog;
 import com.hjj.ben.model.NovelChapters;
 import com.hjj.ben.model.NovelDetail;
 import com.hjj.ben.service.INovelChaptersService;
@@ -30,6 +31,7 @@ public class NovelChaptersController {
     private INovelDetailService novelDetailService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/catalog/{novelDetailId}")
+    @SystemControllerLog(description = "获取小说目录")
     public ModelAndView getCatalog(@PathVariable Integer novelDetailId,
                                    @RequestParam(value = "reverseFlag",
                                            required = false,
@@ -62,6 +64,7 @@ public class NovelChaptersController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{chapterId}")
+    @SystemControllerLog(description = "获取小说章节内容")
     public ModelAndView getChapterById(@PathVariable Integer chapterId) {
         NovelChapters novelChapters = novelChaptersService.getChapterById(chapterId);
         ModelAndView view = new ModelAndView("chapters/chapter");

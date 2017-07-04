@@ -1,4 +1,4 @@
-package com.hjj.ben.interceptor;
+package com.hjj.ben.aop;
 
 import com.hjj.ben.annotation.SystemControllerLog;
 import org.aspectj.lang.JoinPoint;
@@ -29,7 +29,7 @@ public class SystemLogAspect {
      */
     @Pointcut("@annotation(com.hjj.ben.annotation.SystemControllerLog)")
     public void controllerAspect() {
-        logger.info("#####controllerAspect#####");
+        logger.info("#####controllerAspect()#####");
     }
 
     /**
@@ -38,12 +38,13 @@ public class SystemLogAspect {
      */
     @Before("controllerAspect()")
     public void doBefore(JoinPoint joinPoint) {
-        logger.info("#####controllerAspect()#####");
         HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).
                 getRequest();
         try {
             // 请求uri
             String uri = request.getRequestURI();
+            // url
+            String requestURL = request.getRequestURL().toString();
             // 请求方法类型
             String method_type = request.getMethod();
             // 请求方法
@@ -51,8 +52,8 @@ public class SystemLogAspect {
                     joinPoint.getSignature().getName() + "()" ;
             // 方法描述
             String description = getControllerMethodDescription(joinPoint);
-            Object [] objs = {uri, method_type, method, description};
-            logger.info("{} {} {} {}", objs);
+            Object [] objs = {requestURL, uri, method_type, method, description};
+            logger.info("{} {} {} {} {}", objs);
         } catch (Exception e) {
             // 记录异常日志
             logger.error("#####前置通知异常，异常信息：{}#####", e);
@@ -92,4 +93,5 @@ public class SystemLogAspect {
         return description;
     }
 }
+
 
