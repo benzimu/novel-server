@@ -42,7 +42,7 @@ public class SystemLogAspect {
                 getRequest();
         try {
             // 请求uri
-            String uri = request.getRequestURI();
+            // String uri = request.getRequestURI();
             // url
             String requestURL = request.getRequestURL().toString();
             // 请求方法类型
@@ -52,8 +52,8 @@ public class SystemLogAspect {
                     joinPoint.getSignature().getName() + "()" ;
             // 方法描述
             String description = getControllerMethodDescription(joinPoint);
-            Object [] objs = {requestURL, uri, method_type, method, description};
-            logger.info("{} {} {} {} {}", objs);
+            Object [] objs = {requestURL, description, method_type, method};
+            logger.info("{} {} {} {}", objs);
         } catch (Exception e) {
             // 记录异常日志
             logger.error("#####前置通知异常，异常信息：{}#####", e);

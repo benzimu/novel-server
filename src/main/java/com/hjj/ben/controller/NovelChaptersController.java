@@ -34,10 +34,8 @@ public class NovelChaptersController {
     @SystemControllerLog(description = "获取小说目录")
     public ModelAndView getCatalog(@PathVariable Integer novelDetailId,
                                    @RequestParam(value = "reverseFlag",
-                                           required = false,
                                            defaultValue = "0") Integer reverseFlag,
                                    @RequestParam(value = "crawlFlag",
-                                           required = false,
                                            defaultValue = "0") Integer crawlFlag) {
         if (crawlFlag == 1) {
             String basePath = this.getClass().getResource("/").getPath();
