@@ -21,6 +21,7 @@
         <cglib-version>2.2</cglib-version>
         <junit-version>4.12</junit-version>
         <mockito-version>2.2.9</mockito-version>
+        <glassfish-version>3.0.0</glassfish-version>
     </properties>
 
 
@@ -143,6 +144,12 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>${glassfish-version}</version>
             <scope>test</scope>
         </dependency>
         <!-- 单元测试 end -->
