@@ -2,9 +2,8 @@ package com.hjj.ben.aop;
 
 import com.hjj.ben.annotation.SystemControllerLog;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -58,6 +57,28 @@ public class SystemLogAspect {
             // 记录异常日志
             logger.error("#####前置通知异常，异常信息：{}#####", e);
         }
+    }
+
+    @After("controllerAspect()")
+    public void doAfter(JoinPoint joinPoint) {
+        logger.info("------doAfter()------");
+    }
+
+    @Around("controllerAspect()")
+    public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
+//        logger.info("------doAround()------");
+//        Object proceed = proceedingJoinPoint.proceed();
+        return proceedingJoinPoint.proceed();
+    }
+
+    @AfterReturning("controllerAspect()")
+    public void doAfterReturning(JoinPoint joinPoint) {
+        logger.info("------doAfterRetruning()------");
+    }
+
+    @AfterThrowing("controllerAspect()")
+    public void doAterThrowing(JoinPoint joinPoint) {
+        logger.info("------doAfterThrowing()");
     }
 
     /**

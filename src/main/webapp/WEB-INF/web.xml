@@ -55,6 +55,11 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:spring/dispatcher-servlet.xml</param-value>
         </init-param>
+        <!-- 当请求路由不存在时抛出NoHandlerFoundException，使得@ExceptionHandler能够捕获处理404 -->
+        <init-param>
+            <param-name>throwExceptionIfNoHandlerFound</param-name>
+            <param-value>true</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>

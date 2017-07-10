@@ -22,6 +22,7 @@
         <junit-version>4.12</junit-version>
         <mockito-version>2.2.9</mockito-version>
         <glassfish-version>3.0.0</glassfish-version>
+        <guava-version>15.0</guava-version>
     </properties>
 
 
@@ -113,6 +114,12 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>${servlet-version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava-version}</version>
         </dependency>
 
         <!-- 日志集成依赖 start -->
