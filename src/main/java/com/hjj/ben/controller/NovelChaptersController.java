@@ -1,6 +1,7 @@
 package com.hjj.ben.controller;
 
 import com.hjj.ben.annotation.SystemControllerLog;
+import com.hjj.ben.common.exception.MyCustomException;
 import com.hjj.ben.model.NovelChapters;
 import com.hjj.ben.model.NovelDetail;
 import com.hjj.ben.service.INovelChaptersService;
@@ -37,6 +38,10 @@ public class NovelChaptersController {
                                            defaultValue = "0") Integer reverseFlag,
                                    @RequestParam(value = "crawlFlag",
                                            defaultValue = "0") Integer crawlFlag) {
+        // 测试自定义异常
+        if (novelDetailId == -1)
+            throw new MyCustomException(500, "测试自定义异常");
+
         if (crawlFlag == 1) {
             String basePath = this.getClass().getResource("/").getPath();
             logger.info("basePath: {}", basePath);

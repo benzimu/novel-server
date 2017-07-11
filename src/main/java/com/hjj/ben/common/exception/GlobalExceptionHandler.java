@@ -29,7 +29,7 @@ public class GlobalExceptionHandler extends BaseGlobalExceptionHandler {
 
     // 500
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "服务器内部错误")
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ModelAndView handleError(HttpServletRequest req,
                                     HttpServletResponse res,
                                     Exception e) throws Exception {
@@ -38,7 +38,8 @@ public class GlobalExceptionHandler extends BaseGlobalExceptionHandler {
     }
 
     // 自定义异常
-    @ExceptionHandler({NotFoundException.class})
+    @ExceptionHandler({MyCustomException.class})
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ModelAndView handleCustomError(HttpServletRequest req,
                                           HttpServletResponse res,
                                           Exception e) throws Exception {

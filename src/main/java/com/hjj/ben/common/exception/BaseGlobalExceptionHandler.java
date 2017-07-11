@@ -4,6 +4,7 @@ import com.google.common.base.Throwables;
 import com.hjj.ben.utils.Ajax;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -27,13 +28,9 @@ public class BaseGlobalExceptionHandler {
                                         String viewName, HttpStatus status)
             throws Exception {
         getLogger().info("-----base:handlerError()-----");
-        String errorMsg = null;
-        ResponseStatus responseStatus = AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class);
-        if (responseStatus != null) {
-            errorMsg = responseStatus.reason();
-        } else {
-            errorMsg = e.getMessage() != null ? e.getMessage() : DEFAULT_ERROR_MESSAGE;
-        }
+        if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null)
+            throw e;
+        String errorMsg = e.getMessage() != null ? e.getMessage() : DEFAULT_ERROR_MESSAGE;
 
         String errorStack = Throwables.getStackTraceAsString(e);
 

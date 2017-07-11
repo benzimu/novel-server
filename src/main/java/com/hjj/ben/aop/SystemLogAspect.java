@@ -11,6 +11,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
@@ -24,7 +25,7 @@ public class SystemLogAspect {
     private static final Logger logger = LoggerFactory.getLogger(SystemLogAspect.class);
 
     /**
-     * controller切入点
+     * controller切入点, 拦截所有使用@SystemControllerLog注解的controller
      */
     @Pointcut("@annotation(com.hjj.ben.annotation.SystemControllerLog)")
     public void controllerAspect() {
@@ -52,6 +53,8 @@ public class SystemLogAspect {
             // 方法描述
             String description = getControllerMethodDescription(joinPoint);
             Object [] objs = {requestURL, description, method_type, method};
+
+//            HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
             logger.info("{} {} {} {}", objs);
         } catch (Exception e) {
             // 记录异常日志
@@ -59,26 +62,43 @@ public class SystemLogAspect {
         }
     }
 
+    /**
+     * 后置通知 连接点方法执行完成后执行（包括正常完成和异常退出）
+     * @param joinPoint
+     */
     @After("controllerAspect()")
     public void doAfter(JoinPoint joinPoint) {
-        logger.info("------doAfter()------");
+        logger.info("------doAfter()------: {}");
     }
 
+    /**
+     * 环绕通知 连接点方法执行中执行
+     * @param proceedingJoinPoint
+     * @return
+     * @throws Throwable
+     */
     @Around("controllerAspect()")
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
-//        logger.info("------doAround()------");
-//        Object proceed = proceedingJoinPoint.proceed();
+        logger.info("------doAround()------");
         return proceedingJoinPoint.proceed();
     }
 
+    /**
+     * 返回后通知 连接点方法正常返回执行（如异常退出则不执行）
+     * @param joinPoint
+     */
     @AfterReturning("controllerAspect()")
     public void doAfterReturning(JoinPoint joinPoint) {
         logger.info("------doAfterRetruning()------");
     }
 
-    @AfterThrowing("controllerAspect()")
-    public void doAterThrowing(JoinPoint joinPoint) {
-        logger.info("------doAfterThrowing()");
+    /**
+     * 异常通知 连接点方法异常时执行
+     * @param joinPoint
+     */
+    @AfterThrowing(value = "controllerAspect()", throwing = "ex")
+    public void doAterThrowing(Throwable ex, JoinPoint joinPoint) {
+        logger.info("------doAfterThrowing()------");
     }
 
     /**
