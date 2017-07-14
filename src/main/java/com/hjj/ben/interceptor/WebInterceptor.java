@@ -2,7 +2,6 @@ package com.hjj.ben.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by ben on 7/11/17.
  */
-@Component
+
 public class WebInterceptor extends HandlerInterceptorAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(WebInterceptor.class);
