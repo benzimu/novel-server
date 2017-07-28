@@ -1,0 +1,4 @@
+[submodule "novel"]
+	path = novel
+	url = https://github.com/xiaoben67/novel.git
+	branch = piaotian
