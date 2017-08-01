@@ -9,6 +9,7 @@ import com.hjj.ben.service.INovelDetailService;
 import com.hjj.ben.utils.ShellUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +32,11 @@ public class NovelChaptersController {
     @Resource
     private INovelDetailService novelDetailService;
 
+    @Value("${novel.scrapy.path}")
+    private String NOVEL_SCRAPY_PATH;
+    @Value("${novel.path}")
+    private String NOVEL_PATH;
+
     @RequestMapping(method = RequestMethod.GET, value = "/catalog/{novelDetailId}")
     @SystemControllerLog(description = "获取小说目录")
     public ModelAndView getCatalog(@PathVariable Integer novelDetailId,
@@ -39,8 +45,9 @@ public class NovelChaptersController {
                                    @RequestParam(value = "crawlFlag",
                                            defaultValue = "0") Integer crawlFlag) {
         // 测试自定义异常
-        if (novelDetailId == -1)
+        if (novelDetailId == -1) {
             throw new MyCustomException(500, "测试自定义异常");
+        }
 
         if (crawlFlag == 1) {
             String basePath = this.getClass().getResource("/").getPath();
@@ -49,8 +56,10 @@ public class NovelChaptersController {
             String shellPath = basePath + "script/start_crawl.sh";
             logger.info("shellPath: {}", shellPath);
 
+            logger.info("novel config :{}, {}", NOVEL_PATH, NOVEL_SCRAPY_PATH);
+
             ShellUtil shellUtil = new ShellUtil();
-            shellUtil.startShell("sh " + shellPath);
+            shellUtil.startShell("sh " + shellPath + " " + NOVEL_PATH + " " + NOVEL_SCRAPY_PATH);
         }
 
         String reverseTag = reverseFlag == 0 ? "asc" : "desc";

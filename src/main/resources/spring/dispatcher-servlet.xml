@@ -13,6 +13,8 @@
             http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
             http://www.springframework.org/schema/aop
             http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+    <!-- 进入配置文件 -->
+    <context:property-placeholder location="classpath*:properties/*.properties" />
 
     <!-- 配置全局拦截器 -->
     <mvc:interceptors>
@@ -24,7 +26,7 @@
 
     <!--启动对@AspectJ注解的支持 , proxy-target-class设置为true表示通知spring使用cglib
     而不是jdk的来生成代理方法，这样AOP可以拦截到Controller -->
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
 
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
     <context:component-scan base-package="com.hjj.ben.controller" />
