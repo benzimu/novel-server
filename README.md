@@ -30,15 +30,22 @@
    使用IDEA构建项目：首先Fork项目，然后运行File --> New --> Project from Version Control --> GitHub
    
 ## 项目运行方法
-   一、下载爬虫项目：此项目使用python2.7的scrapy爬虫框架编写（建议使用"piaotian"分支）
-    
-   &emsp;1. git clone https://github.com/xiaoben67/novel.git  
-   &emsp;2. cd novel  
-   &emsp;3. git checkout piaotian  
-   &emsp;4. 项目的script有数据库sql文件，需要初始化。具体使用可查看：[https://github.com/xiaoben67/novel/blob/piaotian/README.md](https://github.com/xiaoben67/novel/blob/piaotian/README.md)
-     
-   二、修改本项目（novelserver）下执行爬虫的脚本  
+   一、本地运行
+
+   &emsp;1. git clone https://github.com/xiaoben67/novel-server.git
+   &emsp;2. cd novel-server
+   &emsp;3. git submodule init
+   &emsp;4. git submodule update
+   &emsp;5. 修改数据库链接：novel-server/src/main/resources/properties/config.properties
+   &emsp;6. 项目的script有数据库sql文件，需要初始化。具体使用可查看：[https://github.com/xiaoben67/novel/blob/piaotian/README.md](https://github.com/xiaoben67/novel/blob/piaotian/README.md)
+   &emsp;7. 安装Python环境（参考 novel-server/novel/README.md）
+   &emsp;8. 修改novel-server/src/main/resources/properties/novel.properties
    
-   &emsp;novelserver/src/main/java/com/hjj/ben/script/start_crawl.sh
-     
+   二、Docker
+   
+   &emsp;1. git clone https://github.com/xiaoben67/novel-server.git
+   &emsp;2. 修改数据库链接：novel-server/src/main/resources/properties/config.properties
+   &emsp;3. cd novel-server
+   &emsp;4. docker build -t novel-server:1.0 .
+   &emsp;5. docker run -d --name novel-server -p 8080:8080 --hostname novel-server novel-server:1.0
    
