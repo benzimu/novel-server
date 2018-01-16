@@ -32,20 +32,21 @@
 ## 项目运行方法
    一、本地运行
 
-   &emsp;1. git clone https://github.com/xiaoben67/novel-server.git
-   &emsp;2. cd novel-server
-   &emsp;3. git submodule init
-   &emsp;4. git submodule update
-   &emsp;5. 修改数据库链接：novel-server/src/main/resources/properties/config.properties
-   &emsp;6. 项目的script有数据库sql文件，需要初始化。具体使用可查看：[https://github.com/xiaoben67/novel/blob/piaotian/README.md](https://github.com/xiaoben67/novel/blob/piaotian/README.md)
-   &emsp;7. 安装Python环境（参考 novel-server/novel/README.md）
-   &emsp;8. 修改novel-server/src/main/resources/properties/novel.properties
+   1. git clone https://github.com/xiaoben67/novel-server.git
+   2. cd novel-server
+   3. git submodule init
+   4. git submodule update
+   5. 修改数据库链接：novel-server/src/main/resources/properties/config.properties
+   6. 项目的script有数据库sql文件，需要初始化。具体使用可查看：[https://github.com/xiaoben67/novel/blob/piaotian/README.md](https://github.com/xiaoben67/novel/blob/piaotian/README.md)
+   7. 安装Python环境（参考 novel-server/novel/README.md）
+   8. 修改novel-server/src/main/resources/properties/novel.properties
    
    二、Docker
    
-   &emsp;1. git clone https://github.com/xiaoben67/novel-server.git
-   &emsp;2. 修改数据库链接：novel-server/src/main/resources/properties/config.properties
-   &emsp;3. cd novel-server
-   &emsp;4. docker build -t novel-server:1.0 .
-   &emsp;5. docker run -d --name novel-server -p 8080:8080 --hostname novel-server novel-server:1.0
+   1. git clone https://github.com/xiaoben67/novel-server.git
+   2. 修改数据库链接：novel-server/src/main/resources/properties/config.properties
+   3. cd novel-server
+   4. 制作镜像：docker build -t novel-server:1.0 .
+   5. 或者直接拉取镜像： docker pull benlee/novel-server:1.0
+   5. docker run -d --name novel-server -p 8080:8080 --hostname novel-server --env DB_USER=root --env DB_PASSWD=hjj --env DB_NAME=novel --env DB_HOST=172.24.6.177 --env DB_PORT=3306 novel-server:1.0
    

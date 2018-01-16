@@ -11,6 +11,14 @@
         <property name="password" value="${datasource.password}" />
         <property name="jdbcUrl" value="${datasource.url}" />
         <property name="driverClass" value="${datasource.driverClass}" />
+        <property name="minPoolSize" value="${datasource.minPoolSize}" />
+        <property name="maxPoolSize" value="${datasource.maxPoolSize}" />
+        <property name="maxIdleTime" value="${datasource.maxIdleTime}" />
+        <property name="acquireIncrement" value="${datasource.acquireIncrement}" />
+        <property name="maxStatements" value="${datasource.maxStatements}" />
+        <property name="initialPoolSize" value="${datasource.initialPoolSize}" />
+        <property name="idleConnectionTestPeriod" value="${datasource.idleConnectionTestPeriod}" />
+        <property name="breakAfterAcquireFailure" value="${datasource.breakAfterAcquireFailure}" />
     </bean>
 
 </beans>
